@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Kindergarten.Core.Dto
 {
-    internal class KindergartenDto
+    public class KindergartenDto
     {
     }
 }

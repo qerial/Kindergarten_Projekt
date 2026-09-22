@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Kindergarten.Core.ServiceInterface
 {
-    internal interface IKindergartenServices
+    public interface IKindergartenServices
     {
     }
 }

@@ -1,10 +1,15 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Kindergarten.Data
 {
-    internal class KindergartenContext
+    public class KindergartenContext : DbContext
     {
+        public KindergartenContext(DbContextOptions<KindergartenContext> options) : base (options)
+        { 
+        
+        }
     }
 }
