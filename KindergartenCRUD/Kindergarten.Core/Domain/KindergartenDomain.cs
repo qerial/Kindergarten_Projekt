@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Kindergarten.Core.Domain
 {
-    public class Kindergarten
+    public class KindergartenDomain
     {
         public Guid Id { get; set; }
         public string GroupName { get; set; } = string.Empty;

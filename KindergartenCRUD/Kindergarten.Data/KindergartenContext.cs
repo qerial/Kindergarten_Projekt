@@ -1,9 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
+using Kindergarten.Core.Domain;
 namespace Kindergarten.Data
+
 {
     public class KindergartenContext : DbContext
     {
@@ -11,5 +9,6 @@ namespace Kindergarten.Data
         { 
         
         }
+        public DbSet<KindergartenDomain> Kindergartens { get; set; }
     }
 }
