@@ -1,3 +1,6 @@
 <Solution>
+  <Project Path="Kindergarten.ApplicationServices/Kindergarten.ApplicationServices.csproj" Id="5492b5bb-c726-4e5f-9405-b829a782fd4e" />
+  <Project Path="Kindergarten.Core/Kindergarten.Core.csproj" Id="e8637357-22bb-4865-a899-fa13d0535937" />
+  <Project Path="Kindergarten.Data/Kindergarten.Data.csproj" Id="c44cef78-aacc-42ef-ae08-8a47248dd525" />
   <Project Path="KindergartenCRUD/KindergartenCRUD.csproj" />
 </Solution>
