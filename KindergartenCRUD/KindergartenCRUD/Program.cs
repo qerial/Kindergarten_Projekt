@@ -1,5 +1,7 @@
 using Kindergarten.Data;
 using Microsoft.EntityFrameworkCore;
+using Kindergarten.ApplicationServices.Services;
+using Kindergarten.Core.ServiceInterface;
 
 namespace KindergartenCRUD
 {
@@ -10,10 +12,11 @@ namespace KindergartenCRUD
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddControllersWithViews();
+            builder.Services.AddScoped<IKindergartenServices, KindergartenServices>();
 
             builder.Services.AddDbContext<KindergartenContext>(options =>
-     options.UseSqlServer(
-         builder.Configuration.GetConnectionString("KindergartenDB")));
+                options.UseSqlServer(
+                    builder.Configuration.GetConnectionString("KindergartenDB")));
 
             var app = builder.Build();
 

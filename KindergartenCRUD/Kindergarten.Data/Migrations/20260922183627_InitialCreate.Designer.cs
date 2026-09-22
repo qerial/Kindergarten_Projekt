@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kindergarten.Data.Migrations
 {
     [DbContext(typeof(KindergartenContext))]
-    [Migration("20260922164548_InitialCommit")]
-    partial class InitialCommit
+    [Migration("20260922183627_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

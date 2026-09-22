@@ -1,11 +1,12 @@
-﻿using Kindergarten.Data;
+﻿using Kindergarten.ApplicationServices;
 using Kindergarten.Core;
-using Kindergarten.ApplicationServices;
+using Kindergarten.Core.ServiceInterface;
+using Kindergarten.Data;
 
 
 namespace Kindergarten.ApplicationServices.Services
 {
-    internal class KindergartenServices
+    public class KindergartenServices : IKindergartenServices
     {
         private readonly KindergartenContext _context;
         public KindergartenServices
