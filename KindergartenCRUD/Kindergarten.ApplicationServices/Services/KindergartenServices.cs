@@ -34,5 +34,10 @@ namespace Kindergarten.ApplicationServices.Services
             await _context.SaveChangesAsync();
             return domain;
         }
+        public async Task<KindergartenDomain> Details(Guid id)
+        {
+            var domain = await _context.Kindergartens.FindAsync(id);
+            return domain;
+        }
     }
 }
