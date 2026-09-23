@@ -1,4 +1,5 @@
-﻿using Kindergarten.Core.ServiceInterface;
+﻿using Kindergarten.Core.Dto;
+using Kindergarten.Core.ServiceInterface;
 using Kindergarten.Data;
 using KindergartenCRUD.Models.Kindergarten;
 using Microsoft.AspNetCore.Mvc;
@@ -40,5 +41,38 @@ namespace KindergartenCRUD.Controllers
 
             return View(result);
         }
+        // tagastab kasutajale vormi, kuhu saab sisestada andmed
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        // kui oled teinud vormi, siis see meetod käivitatakse
+        // saadab andmed serverisse, kus need salvestatakse andmebaasi
+        [HttpPost]
+        public async Task<IActionResult> Create(KindergartenCreateViewModel vm)
+        {
+            if (ModelState.IsValid)
+            {
+                var dto = new KindergartenDto
+                {
+                    Id = vm.Id,
+                    GroupName = vm.GroupName,
+                    ChildrenCount = vm.ChildrenCount,
+                    KindergartenName = vm.KindergartenName,
+                    TeacherName = vm.TeacherName,
+                    CreatedAt = vm.CreatedAt,
+                    UpdatedAt = vm.UpdatedAt
+                };
+
+
+                var result = await _kindergartenServices.Create(dto);
+
+                return RedirectToAction(nameof(Index));
+            }
+            return View(vm);
+        }
     }
 }
+
