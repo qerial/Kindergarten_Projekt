@@ -126,7 +126,54 @@ namespace KindergartenCRUD.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+        [HttpGet]
+        public async Task<IActionResult> Update(Guid id)
+        {
+            var kindergarten = await _kindergartenServices.Details(id);
 
+            if (kindergarten == null)
+            {
+                return NotFound();
+            }
+
+            var vm = new KindergartenUpdateViewModel();
+            {
+                vm.Id = kindergarten.Id;
+                vm.GroupName = kindergarten.GroupName;
+                vm.ChildrenCount = kindergarten.ChildrenCount;
+                vm.KindergartenName = kindergarten.KindergartenName;
+                vm.TeacherName = kindergarten.TeacherName;
+                vm.CreatedAt = kindergarten.CreatedAt;
+                vm.UpdatedAt = kindergarten.UpdatedAt;
+
+                return View(vm);
+            }
+
+
+
+        }
+        [HttpPost]
+
+        public async Task<IActionResult> Update(KindergartenUpdateViewModel vm)
+        {
+            var dto = new KindergartenDto();
+            {
+                dto.Id = vm.Id;
+                dto.GroupName = vm.GroupName;
+                dto.ChildrenCount = vm.ChildrenCount;
+                dto.KindergartenName = vm.KindergartenName;
+                dto.TeacherName = vm.TeacherName;
+                dto.CreatedAt = vm.CreatedAt;
+                dto.UpdatedAt = DateTime.Now;
+            }
+            var result = await _kindergartenServices.Update(dto);
+            if (result == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
 

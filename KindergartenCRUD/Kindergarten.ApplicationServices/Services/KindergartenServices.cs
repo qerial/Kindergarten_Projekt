@@ -55,5 +55,23 @@ namespace Kindergarten.ApplicationServices.Services
 
             return result;
         }
+        public async Task<KindergartenDomain> Update(KindergartenDto dto)
+        {
+            KindergartenDomain kindergarten = new();
+            {
+                kindergarten.Id = dto.Id;
+                kindergarten.GroupName = dto.GroupName;
+                kindergarten.ChildrenCount = dto.ChildrenCount;
+                kindergarten.KindergartenName = dto.KindergartenName;
+                kindergarten.TeacherName = dto.TeacherName;
+                kindergarten.CreatedAt = dto.CreatedAt;
+                kindergarten.UpdatedAt = DateTime.Now;
+            }
+
+            _context.Kindergartens.Update(kindergarten);
+            await _context.SaveChangesAsync();
+
+            return kindergarten;
+        }
     }
 }
