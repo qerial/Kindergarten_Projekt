@@ -73,7 +73,7 @@ namespace KindergartenCRUD.Controllers
             }
             return View(vm);
         }
-    [HttpGet]
+        [HttpGet]
 
         public async Task<IActionResult> Details(Guid id)
         {
@@ -94,6 +94,39 @@ namespace KindergartenCRUD.Controllers
             };
             return View(vm);
         }
+        [HttpGet]
+        [HttpGet]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var result = await _kindergartenServices.Details(id);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            var vm = new KindergartenDeleteViewModel
+            {
+                Id = result.Id,
+                GroupName = result.GroupName,
+                ChildrenCount = result.ChildrenCount,
+                KindergartenName = result.KindergartenName,
+                TeacherName = result.TeacherName,
+                CreatedAt = result.CreatedAt,
+                UpdatedAt = result.UpdatedAt
+            };
+
+            return View(vm);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeletePost(Guid id)
+        {
+            await _kindergartenServices.Delete(id);
+
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }
 

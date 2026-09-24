@@ -4,6 +4,7 @@ using Kindergarten.Core.Domain;
 using Kindergarten.Core.Dto;
 using Kindergarten.Core.ServiceInterface;
 using Kindergarten.Data;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace Kindergarten.ApplicationServices.Services
@@ -29,7 +30,8 @@ namespace Kindergarten.ApplicationServices.Services
                 domain.TeacherName = dto.TeacherName;
                 domain.CreatedAt = DateTime.Now;
                 domain.UpdatedAt = DateTime.Now;
-            };
+            }
+            ;
             _context.Kindergartens.Add(domain);
             await _context.SaveChangesAsync();
             return domain;
@@ -38,6 +40,20 @@ namespace Kindergarten.ApplicationServices.Services
         {
             var domain = await _context.Kindergartens.FindAsync(id);
             return domain;
+        }
+        public async Task<KindergartenDomain> Delete(Guid id)
+        {
+
+            var result = await _context.Kindergartens
+                .FirstOrDefaultAsync(x => x.Id == id);
+            if (result == null)
+            {
+                return null;
+            }
+            _context.Kindergartens.Remove(result);
+            await _context.SaveChangesAsync();
+
+            return result;
         }
     }
 }
